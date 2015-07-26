@@ -1,0 +1,28 @@
+{
+	"request" : {
+		"user" : "Mario",
+		"location" : "His house.",
+		"siblings" : ["Luigi"],
+		"countries" : [
+			{
+				"name" : "USA",
+				"regions": ["California", "New York", "Washington"]
+			},
+			{
+				"name" : "Japan",
+				"regions" : ["Tokyo", "Osaka", "Aichi"]
+			},
+			{
+				"name" : "Italy",
+				"regions" : ["Lazio", "Lombardy", "Veneto"]
+			}
+		],
+		"id" : 619
+	},
+	"flags" : {
+		"activated" : false
+	},
+	"meta" : {
+		"name" : "Alpha"
+	}
+}
