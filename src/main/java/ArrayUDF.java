@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
@@ -17,9 +18,11 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 /**
  * JSONArray UDF
- *
+ * @author Munim Ali
  */
 
+@Description(name = "JsonArray", value = "JsonArray(json, path) returns an array cotaining objects in JSON, specified by PATH",
+ extended = "JsonArray(json, path) returns an array cotaining objects in JSON, specified by PATH")
 public class ArrayUDF extends GenericUDF {
   private ObjectInspectorConverters.Converter[] converters;
 
@@ -61,6 +64,9 @@ public class ArrayUDF extends GenericUDF {
     return result;
   }
 
+  /** Performs a DFS traversal on the JSON object/array specified
+  *   by X, and adding objects specified by NAMES to arraylist RES
+  */
   private static void traverse(ArrayList<Text> res, Object x, String[] names, int index) {
       if (index  == names.length) {
         if (x instanceof JSONArray) {
@@ -95,7 +101,7 @@ public class ArrayUDF extends GenericUDF {
         } catch (Exception e) {
           flag = true;
           try {
-
+            temp.getJSONArray(names[index]);
           } catch (Exception exception) {
             //Path does not exist
             return;
