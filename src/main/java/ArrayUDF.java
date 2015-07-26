@@ -94,6 +94,12 @@ public class ArrayUDF extends GenericUDF {
           temp.getJSONObject(names[index]);
         } catch (Exception e) {
           flag = true;
+          try {
+
+          } catch (Exception exception) {
+            //Path does not exist
+            return;
+          }
         }
         if (!flag) {
           traverse(res, temp.getJSONObject(names[index]), names, index + 1);
